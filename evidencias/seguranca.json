@@ -1,0 +1,48 @@
+[
+  {
+    "requisicao": "GET /fields sem token",
+    "status": 401,
+    "resposta": {
+      "detail": "Sessão inválida ou expirada"
+    }
+  },
+  {
+    "requisicao": "GET /fields/1 com usuário vizinho",
+    "status": 404,
+    "resposta": {
+      "detail": "Talhão não encontrado"
+    }
+  },
+  {
+    "requisicao": "POST /fields com área negativa",
+    "status": 422,
+    "resposta": {
+      "detail": [
+        {
+          "type": "greater_than",
+          "loc": [
+            "body",
+            "area_ha"
+          ],
+          "msg": "Input should be greater than 0",
+          "input": -1,
+          "ctx": {
+            "gt": 0.0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "requisicao": "POST /auth/logout",
+    "status": 204,
+    "resposta": null
+  },
+  {
+    "requisicao": "GET /fields com token revogado",
+    "status": 401,
+    "resposta": {
+      "detail": "Sessão inválida ou expirada"
+    }
+  }
+]

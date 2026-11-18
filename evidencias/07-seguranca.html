@@ -1,0 +1,48 @@
+<html lang="pt-BR"><meta charset="utf-8"><style>body{background:#f2f6ed;color:#163a2b;padding:35px;font:18px system-ui}pre{background:white;padding:25px;border-left:5px solid #286b49;white-space:pre-wrap;font:17px monospace}</style><h1>Segurança · respostas HTTP</h1><p>Saída real da execução local · evidência técnica</p><pre>[
+  {
+    &quot;requisicao&quot;: &quot;GET /fields sem token&quot;,
+    &quot;status&quot;: 401,
+    &quot;resposta&quot;: {
+      &quot;detail&quot;: &quot;Sessão inválida ou expirada&quot;
+    }
+  },
+  {
+    &quot;requisicao&quot;: &quot;GET /fields/1 com usuário vizinho&quot;,
+    &quot;status&quot;: 404,
+    &quot;resposta&quot;: {
+      &quot;detail&quot;: &quot;Talhão não encontrado&quot;
+    }
+  },
+  {
+    &quot;requisicao&quot;: &quot;POST /fields com área negativa&quot;,
+    &quot;status&quot;: 422,
+    &quot;resposta&quot;: {
+      &quot;detail&quot;: [
+        {
+          &quot;type&quot;: &quot;greater_than&quot;,
+          &quot;loc&quot;: [
+            &quot;body&quot;,
+            &quot;area_ha&quot;
+          ],
+          &quot;msg&quot;: &quot;Input should be greater than 0&quot;,
+          &quot;input&quot;: -1,
+          &quot;ctx&quot;: {
+            &quot;gt&quot;: 0.0
+          }
+        }
+      ]
+    }
+  },
+  {
+    &quot;requisicao&quot;: &quot;POST /auth/logout&quot;,
+    &quot;status&quot;: 204,
+    &quot;resposta&quot;: null
+  },
+  {
+    &quot;requisicao&quot;: &quot;GET /fields com token revogado&quot;,
+    &quot;status&quot;: 401,
+    &quot;resposta&quot;: {
+      &quot;detail&quot;: &quot;Sessão inválida ou expirada&quot;
+    }
+  }
+]</pre></html>
